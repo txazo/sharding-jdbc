@@ -3,33 +3,33 @@ package org.txazo.shardingjdbc.sample.controller;
 import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.txazo.shardingjdbc.sample.bean.User;
-import org.txazo.shardingjdbc.sample.mapper.UserMapper;
-
-import java.util.Map;
+import org.txazo.shardingjdbc.sample.entity.User;
+import org.txazo.shardingjdbc.sample.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
-    @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Map add(String nickname, String gender, Integer age) {
+    @GetMapping("add")
+    public Object add(@RequestParam String nickname, @RequestParam String gender, @RequestParam Integer age) {
         User user = new User();
         user.setNickname(nickname);
         user.setGender(gender);
         user.setAge(age);
-        int id = userMapper.addUser(user);
-        return ImmutableMap.of("id", id);
+        int id = userService.addUser(user);
+        return ImmutableMap.of("data", id);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public User get(@PathVariable("id") Integer id) {
-        return userMapper.getUser(id);
+    @GetMapping("get")
+    public Object get(@RequestParam Integer id) {
+        User user = userService.getUser(id);
+        return ImmutableMap.of("data", user);
     }
+
+    // http://localhost:8080/user/add?nickname=root&gender=M&age=25
+    // http://localhost:8080/user/get?id=1
 
 }

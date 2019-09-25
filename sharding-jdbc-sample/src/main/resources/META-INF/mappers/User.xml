@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.txazo.shardingjdbc.sample.mapper.UserMapper">
+<mapper namespace="org.txazo.shardingjdbc.sample.repository.UserRepository">
 
     <insert id="addUser" parameterType="user">
-        insert into user (id, city, name)
-        VALUES (#{name},#{gender},#{age})
+        insert into user (nickname, gender, age)
+        VALUES (#{nickname},#{gender},#{age})
     </insert>
 
     <select id="getUser" resultType="user">

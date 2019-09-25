@@ -4,10 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <package name="org.txazo.shardingjdbc.sample.bean.User" />
+        <package name="org.txazo.shardingjdbc.sample.entity"/>
     </typeAliases>
 
     <mappers>
-        <mapper resource="mapper/User.xml" />
+        <mapper resource="META-INF/mappers/User.xml"/>
+        <mapper resource="META-INF/mappers/Account.xml"/>
     </mappers>
 </configuration>
