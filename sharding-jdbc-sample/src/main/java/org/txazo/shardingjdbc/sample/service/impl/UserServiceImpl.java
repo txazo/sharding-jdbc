@@ -20,7 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(Integer id) {
-        // HintManager.getInstance().setMasterRouteOnly();
+//        HintManager hintManager = HintManager.getInstance();
+//        hintManager.setMasterRouteOnly();
+//        hintManager.close();
         return userRepository.getUser(id);
     }
 
